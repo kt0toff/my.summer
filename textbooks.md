@@ -9,6 +9,11 @@
 - [Математика 6 клас — Мерзляк, 2023](https://pidruchnyk.com.ua/2589-matematyka-6-klas-merzliak-2023.html)  
   [PDF](https://files.pidruchnyk.com.ua/uploads/book/6-klas-matematyka-merzliak-2023-1.pdf)
 
+### 7 клас
+
+- [Алгебра 7 клас — Мерзляк, 2024](https://pidruchnyk.com.ua/2892-algebra-merzliak-7-klas-2024.html)  
+  [PDF](https://files.pidruchnyk.com.ua/uploads/book/7-klas-algebra-merzliak-2024.pdf)
+
 ## Українська мова
 
 ### 5 клас
@@ -21,10 +26,21 @@
 - [Українська мова 6 клас — Авраменко, 2023](https://pidruchnyk.com.ua/2592-ukrmova-6-klas-avramenko.html)  
   [PDF](https://files.pidruchnyk.com.ua/uploads/book/6-klas-ukrmova-avramenko-2023.pdf)
 
+### 7 клас
+
+- [Українська мова 7 клас — Авраменко, 2024](https://pidruchnyk.com.ua/2876-ukrainska-mova-avramenko-7-klas-2024.html)  
+  [PDF](https://files.pidruchnyk.com.ua/uploads/book/7-klas-ukrmova-avramenko-2024.pdf)
+
 ## Хімія
 
-Поки немає доданих підручників.
+### 7 клас
+
+- [Хімія 7 клас — Попель, 2024](https://pidruchnyk.com.ua/2821-khimiia-popel-7-klas-2024.html)  
+  [PDF](https://files.pidruchnyk.com.ua/uploads/book/7-klas-himia-popel-2024.pdf)
 
 ## Історія України
 
-Поки немає доданих підручників.
+### 7 клас
+
+- [Історія України 7 клас — Панарін, 2024](https://pidruchnyk.com.ua/2848-istoriia-ukrainy-panarin-7-klas-2024.html)  
+  [PDF](https://files.pidruchnyk.com.ua/uploads/book/7-klas-istoria-ukr-panarin-2024.pdf)
