@@ -45,6 +45,7 @@
 - [`weekly-plan.md`](weekly-plan.md) — повний план на 8 тижнів.
 - [`roadmap-by-topics.md`](roadmap-by-topics.md) — дорожня карта за темами: що вчити спочатку, що після цього.
 - [`learning-links.md`](learning-links.md) — посилання на навчальні ресурси.
+- [`textbooks.md`](textbooks.md) — підручники з гіперпосиланнями за предметами й класами.
 - [`progress.md`](progress.md) — щоденний прогрес.
 - [`sources.md`](sources.md) — офіційні джерела та навчальні платформи.
 
@@ -59,7 +60,7 @@
 
 1. Відкрий `roadmap-by-topics.md`.
 2. Обери тему, яка йде першою у твоєму предметі.
-3. Знайди урок у `learning-links.md`.
+3. Знайди урок у `learning-links.md` або підручник у `textbooks.md`.
 4. Подивись пояснення або прочитай параграф.
 5. Зроби вправи.
 6. Помилки запиши у файл `mistakes.md` відповідного предмета.
