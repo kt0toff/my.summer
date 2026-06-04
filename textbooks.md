@@ -24,6 +24,11 @@
 - [Алгебра 9 клас — Мерзляк, 2017](https://pidruchnyk.com.ua/982-algebra-merzlyak-9-klas-2017.html)  
   [PDF](https://files.pidruchnyk.com.ua/uploads/book/9_klas_algebra_merzljak_2017.pdf)
 
+### 10 клас
+
+- [Алгебра 10 клас — Мерзляк, профільний рівень](https://pidruchnyk.com.ua/430-algebra-proflniy-rven-merzlyak-10-klas.html)  
+  [PDF](https://files.pidruchnyk.com.ua/uploads/book/10-klas-algebra-merzljak-2018-prof.pdf)
+
 ## Українська мова
 
 ### 5 клас
@@ -51,6 +56,11 @@
 - [Українська мова 9 клас — Авраменко, 2017](https://pidruchnyk.com.ua/970-ukrmova-9klas-avramenko.html)  
   [PDF](https://files.pidruchnyk.com.ua/uploads/book/9_klas_ukrajinska_mova_avramenko_2017.pdf)
 
+### 10 клас
+
+- [Українська мова 10 клас — Авраменко, 2018](https://pidruchnyk.com.ua/1168-ukrainska-mova-10-klas-avramenko.html)  
+  [PDF](https://files.pidruchnyk.com.ua/uploads/book/10-klas-ukrajinska-mova-avramenko-2018.pdf)
+
 ## Хімія
 
 ### 7 клас
@@ -68,6 +78,11 @@
 - [Хімія 9 клас — Григорович, 2017](https://pidruchnyk.com.ua/3116-khimiia-9-klas-grygorovych.html)  
   [PDF](https://files.pidruchnyk.com.ua/uploads/book/9-klas-himiia-grygorovych-2017.pdf)
 
+### 10 клас
+
+- [Хімія 10 клас — Ярошенко, 2018](https://pidruchnyk.com.ua/380-himiya-yaroshenko-10-klas.html)  
+  [PDF](https://files.pidruchnyk.com.ua/uploads/book/10-klas-khimija-jaroshenko-2018.pdf)
+
 ## Історія України
 
 ### 7 клас
@@ -84,3 +99,8 @@
 
 - [Історія України 9 клас — Власов, 2017](https://pidruchnyk.com.ua/945-istoriya-ukrainy-9-klas-vlasov.html)  
   [PDF](https://files.pidruchnyk.com.ua/uploads/book/9_klas_istorija_ukrajini_vlasov_2017.pdf)
+
+### 10 клас
+
+- [Історія України 10 клас — Власов, Кульчицький, 2018](https://pidruchnyk.com.ua/1228-istoriya-ukrainy-10-klas-vlasov-kulchyckyy.html)  
+  [PDF](https://files.pidruchnyk.com.ua/uploads/book/10-klas-istorija-ukrajini-vlasov-2018-stand.pdf)
