@@ -40,12 +40,27 @@
 - [ ] Тиждень 7 — велике повторення
 - [ ] Тиждень 8 — фінальне закріплення
 
-## Документи
+## Головні файли
 
-- `weekly-plan.md` — повний план на 8 тижнів.
-- `progress.md` — щоденний прогрес.
-- `sources.md` — джерела для навчання.
-- `math/` — математика.
-- `chemistry/` — хімія.
-- `ukrainian-language/` — українська мова.
-- `history-ukraine/` — історія України.
+- [`weekly-plan.md`](weekly-plan.md) — повний план на 8 тижнів.
+- [`roadmap-by-topics.md`](roadmap-by-topics.md) — дорожня карта за темами: що вчити спочатку, що після цього.
+- [`learning-links.md`](learning-links.md) — посилання на навчальні ресурси.
+- [`progress.md`](progress.md) — щоденний прогрес.
+- [`sources.md`](sources.md) — офіційні джерела та навчальні платформи.
+
+## Папки предметів
+
+- [`math/`](math/) — математика.
+- [`chemistry/`](chemistry/) — хімія.
+- [`ukrainian-language/`](ukrainian-language/) — українська мова.
+- [`history-ukraine/`](history-ukraine/) — історія України.
+
+## Як навчатися
+
+1. Відкрий `roadmap-by-topics.md`.
+2. Обери тему, яка йде першою у твоєму предметі.
+3. Знайди урок у `learning-links.md`.
+4. Подивись пояснення або прочитай параграф.
+5. Зроби вправи.
+6. Помилки запиши у файл `mistakes.md` відповідного предмета.
+7. Наприкінці дня онови `progress.md`.
