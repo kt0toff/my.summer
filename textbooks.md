@@ -19,6 +19,11 @@
 - [Алгебра 8 клас — Мерзляк, 2025](https://pidruchnyk.com.ua/2906-algebra-merzliak-8-klas-2025.html)  
   [PDF](https://files.pidruchnyk.com.ua/uploads/book/8-klas-algebra-merzliak-2025.pdf)
 
+### 9 клас
+
+- [Алгебра 9 клас — Мерзляк, 2017](https://pidruchnyk.com.ua/982-algebra-merzlyak-9-klas-2017.html)  
+  [PDF](https://files.pidruchnyk.com.ua/uploads/book/9_klas_algebra_merzljak_2017.pdf)
+
 ## Українська мова
 
 ### 5 клас
@@ -41,6 +46,11 @@
 - [Українська мова 8 клас — Авраменко, 2025](https://pidruchnyk.com.ua/2899-ukrainska-mova-avramenko-8-klas-2025.html)  
   [PDF](https://files.pidruchnyk.com.ua/uploads/book/8-klas-ukrmova-avramenko-2025.pdf)
 
+### 9 клас
+
+- [Українська мова 9 клас — Авраменко, 2017](https://pidruchnyk.com.ua/970-ukrmova-9klas-avramenko.html)  
+  [PDF](https://files.pidruchnyk.com.ua/uploads/book/9_klas_ukrajinska_mova_avramenko_2017.pdf)
+
 ## Хімія
 
 ### 7 клас
@@ -53,6 +63,11 @@
 - [Хімія 8 клас — Попель](https://pidruchnyk.com.ua/892-himiya-8-popel-nova-programa-2016.html)  
   [PDF](https://files.pidruchnyk.com.ua/uploads/book/8-klas-himiya-popel-2021.pdf)
 
+### 9 клас
+
+- [Хімія 9 клас — Григорович, 2017](https://pidruchnyk.com.ua/3116-khimiia-9-klas-grygorovych.html)  
+  [PDF](https://files.pidruchnyk.com.ua/uploads/book/9-klas-himiia-grygorovych-2017.pdf)
+
 ## Історія України
 
 ### 7 клас
@@ -64,3 +79,8 @@
 
 - [Історія України 8 клас — Панарін, 2025](https://pidruchnyk.com.ua/3017-istoriia-ukrainy-panarin-8-klas-2025.html)  
   [PDF](https://files.pidruchnyk.com.ua/uploads/book/8-klas-istoria-ukr-panarin-2025.pdf)
+
+### 9 клас
+
+- [Історія України 9 клас — Власов, 2017](https://pidruchnyk.com.ua/945-istoriya-ukrainy-9-klas-vlasov.html)  
+  [PDF](https://files.pidruchnyk.com.ua/uploads/book/9_klas_istorija_ukrajini_vlasov_2017.pdf)
