@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Summer Study Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon">☀️</div>
+        <div>
+          <p class="eyebrow">Summer Study</p>
+          <h1>Hub</h1>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-btn active" data-view="dashboard">Огляд</button>
+        <button class="nav-btn" data-view="topics">Бажане до вивчення</button>
+        <button class="nav-btn" data-view="tests">Тести</button>
+        <button class="nav-btn" data-view="textbooks">Підручники</button>
+      </nav>
+
+      <div class="sidebar-card">
+        <p class="eyebrow">Мінімум дня</p>
+        <strong>30 хв математики</strong>
+        <span>+ 10 хв повторення</span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Підготовка до 11 класу</p>
+          <h2>Твій літній штаб навчання</h2>
+          <p>Додавай теми, відмічай прогрес, тестуй себе і не губи підручники серед 100 вкладок.</p>
+        </div>
+        <div class="hero-badge">
+          <span id="todayLabel">Сьогодні</span>
+          <strong id="overallPercent">0%</strong>
+          <small>загальний прогрес</small>
+        </div>
+      </section>
+
+      <section id="dashboard" class="view active">
+        <div class="grid two">
+          <article class="card progress-card">
+            <div class="card-header">
+              <div>
+                <p class="eyebrow">Прогрес</p>
+                <h3>Виконано тем</h3>
+              </div>
+              <span id="doneCount" class="pill">0 / 0</span>
+            </div>
+            <div class="progress-track">
+              <div id="progressFill" class="progress-fill"></div>
+            </div>
+            <div id="subjectProgress" class="subject-progress"></div>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <div>
+                <p class="eyebrow">Фокус</p>
+                <h3>Що робити сьогодні</h3>
+              </div>
+            </div>
+            <ul class="focus-list">
+              <li>Відкрити roadmap і вибрати 1 тему.</li>
+              <li>Подивитися урок або прочитати параграф.</li>
+              <li>Зробити 10–20 завдань.</li>
+              <li>Записати помилки й оновити статус.</li>
+            </ul>
+          </article>
+        </div>
+
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <p class="eyebrow">Активні теми</p>
+              <h3>Ще в роботі</h3>
+            </div>
+          </div>
+          <div id="activeTopics" class="topic-grid"></div>
+        </article>
+      </section>
+
+      <section id="topics" class="view">
+        <div class="grid two">
+          <article class="card">
+            <div class="card-header">
+              <div>
+                <p class="eyebrow">Додати</p>
+                <h3>Бажане до вивчення</h3>
+              </div>
+            </div>
+            <form id="topicForm" class="form">
+              <label>
+                Предмет
+                <select id="subjectInput" required>
+                  <option value="Математика">Математика</option>
+                  <option value="Хімія">Хімія</option>
+                  <option value="Українська мова">Українська мова</option>
+                  <option value="Історія України">Історія України</option>
+                </select>
+              </label>
+              <label>
+                Клас / рівень
+                <input id="gradeInput" placeholder="Наприклад: 8 клас" required />
+              </label>
+              <label>
+                Тема
+                <input id="titleInput" placeholder="Наприклад: квадратні рівняння" required />
+              </label>
+              <label>
+                Опис
+                <textarea id="descriptionInput" placeholder="Що саме треба пройти?"></textarea>
+              </label>
+              <label>
+                Пріоритет
+                <select id="priorityInput">
+                  <option value="normal">Звичайний</option>
+                  <option value="high">Високий</option>
+                  <option value="low">Низький</option>
+                </select>
+              </label>
+              <button class="primary" type="submit">Додати тему</button>
+            </form>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <div>
+                <p class="eyebrow">Список</p>
+                <h3>Усі теми</h3>
+              </div>
+            </div>
+            <div id="topicsList" class="topic-list"></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="tests" class="view">
+        <div class="grid two">
+          <article class="card test-card">
+            <div class="card-header">
+              <div>
+                <p class="eyebrow">Самоперевірка</p>
+                <h3>Мінітест</h3>
+              </div>
+            </div>
+            <div class="test-controls">
+              <select id="testSubject">
+                <option value="">Усі предмети</option>
+                <option value="Математика">Математика</option>
+                <option value="Хімія">Хімія</option>
+                <option value="Українська мова">Українська мова</option>
+                <option value="Історія України">Історія України</option>
+              </select>
+              <button id="newQuestionBtn" class="secondary">Нове питання</button>
+            </div>
+            <div id="questionBox" class="question-box">
+              <p>Натисни “Нове питання”, щоб почати.</p>
+            </div>
+            <form id="answerForm" class="form answer-form">
+              <input id="answerInput" placeholder="Твоя відповідь" />
+              <button class="primary" type="submit">Перевірити</button>
+            </form>
+            <div id="answerResult" class="answer-result"></div>
+          </article>
+
+          <article class="card">
+            <p class="eyebrow">Порада</p>
+            <h3>Як тестувати себе</h3>
+            <p class="muted">Не просто вгадай відповідь. Після помилки відкрий тему в підручнику, зроби 3 схожі завдання і лише потім переходь далі.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="textbooks" class="view">
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <p class="eyebrow">Швидкий доступ</p>
+              <h3>Підручники</h3>
+            </div>
+          </div>
+          <div class="textbook-grid">
+            <a class="textbook-card" href="/textbooks.md" target="_blank">Відкрити textbooks.md</a>
+            <a class="textbook-card" href="/learning-links.md" target="_blank">Навчальні ресурси</a>
+            <a class="textbook-card" href="/roadmap-by-topics.md" target="_blank">Roadmap за темами</a>
+          </div>
+          <p class="muted">Якщо запускаєш сайт через Express, Markdown-файли можуть відкриватися як текст. На GitHub вони виглядатимуть красиво.</p>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
