@@ -4,6 +4,13 @@ const state = {
   currentQuestion: null
 };
 
+const subjects = [
+  { name: 'Математика', icon: '📐' },
+  { name: 'Хімія', icon: '⚗️' },
+  { name: 'Українська мова', icon: '✍️' },
+  { name: 'Історія України', icon: '🏛️' }
+];
+
 const statusLabels = {
   todo: 'План',
   in_progress: 'В роботі',
@@ -74,25 +81,99 @@ function renderAll() {
   renderTopicsList();
 }
 
+function getSubjectStats() {
+  const byName = new Map();
+
+  subjects.forEach((subject) => {
+    byName.set(subject.name, {
+      ...subject,
+      total: 0,
+      done: 0,
+      inProgress: 0,
+      todo: 0,
+      percent: 0
+    });
+  });
+
+  state.topics.forEach((topic) => {
+    if (!byName.has(topic.subject)) {
+      byName.set(topic.subject, {
+        name: topic.subject,
+        icon: '📚',
+        total: 0,
+        done: 0,
+        inProgress: 0,
+        todo: 0,
+        percent: 0
+      });
+    }
+
+    const item = byName.get(topic.subject);
+    item.total += 1;
+    if (topic.status === 'done') item.done += 1;
+    else if (topic.status === 'in_progress') item.inProgress += 1;
+    else item.todo += 1;
+  });
+
+  return [...byName.values()].map((item) => ({
+    ...item,
+    percent: item.total === 0 ? 0 : Math.round((item.done / item.total) * 100)
+  }));
+}
+
 function renderStats() {
   const stats = state.stats;
   qs('#overallPercent').textContent = `${stats.percent}%`;
   qs('#doneCount').textContent = `${stats.done} / ${stats.total}`;
   qs('#progressFill').style.width = `${stats.percent}%`;
 
+  const subjectStats = getSubjectStats();
+  renderSubjectCards('#subjectCards', subjectStats);
+  renderSubjectCards('#topicSubjectCards', subjectStats, true);
+
   const subjectProgress = qs('#subjectProgress');
   subjectProgress.innerHTML = '';
 
-  stats.bySubject.forEach((item) => {
-    const percent = item.total === 0 ? 0 : Math.round((item.done / item.total) * 100);
+  subjectStats.forEach((item) => {
     const row = document.createElement('div');
     row.className = 'subject-row';
     row.innerHTML = `
-      <span>${item.subject}</span>
-      <div class="mini-track"><div class="mini-fill" style="width: ${percent}%"></div></div>
-      <strong>${percent}%</strong>
+      <span>${item.icon} ${item.name}</span>
+      <div class="mini-track"><div class="mini-fill" style="width: ${item.percent}%"></div></div>
+      <strong>${item.percent}%</strong>
     `;
     subjectProgress.appendChild(row);
+  });
+}
+
+function renderSubjectCards(selector, subjectStats, compact = false) {
+  const container = qs(selector);
+  if (!container) return;
+
+  container.innerHTML = '';
+
+  subjectStats.forEach((subject) => {
+    const card = document.createElement('div');
+    card.className = `subject-card ${compact ? 'subject-card-compact' : ''}`;
+    card.innerHTML = `
+      <div class="subject-card-top">
+        <div class="subject-icon">${subject.icon}</div>
+        <div>
+          <h4>${subject.name}</h4>
+          <p>${subject.done} з ${subject.total} тем готово</p>
+        </div>
+        <strong>${subject.percent}%</strong>
+      </div>
+      <div class="subject-big-track">
+        <div class="subject-big-fill" style="width: ${subject.percent}%"></div>
+      </div>
+      <div class="subject-mini-stats">
+        <span>План: ${subject.todo}</span>
+        <span>В роботі: ${subject.inProgress}</span>
+        <span>Готово: ${subject.done}</span>
+      </div>
+    `;
+    container.appendChild(card);
   });
 }
 
