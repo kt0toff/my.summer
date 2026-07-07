@@ -1,10 +1,15 @@
 # Як запустити сайт
 
-Це невеликий сайт для літнього навчання з сервером, SQLite базою даних, progress bar, списком тем і мінітестами.
+Це невеликий сайт для літнього навчання з сервером, JSON-базою даних, progress bar, списком тем і мінітестами.
 
-## 1. Встанови Node.js
+Версія з JSON зроблена спеціально, щоб нормально запускатися в Termux без проблем зі `sqlite3`.
 
-Потрібен Node.js версії 18 або новіший.
+## 1. Встанови Node.js і Git у Termux
+
+```bash
+pkg update && pkg upgrade
+pkg install nodejs git
+```
 
 Перевірка:
 
@@ -20,13 +25,28 @@ git clone https://github.com/kt0toff/my.summer.git
 cd my.summer
 ```
 
-## 3. Встанови залежності
+Якщо репозиторій уже є на телефоні, онови його:
+
+```bash
+cd ~/my.summer
+git pull
+```
+
+## 3. Очисти стару невдалу установку, якщо була помилка з sqlite3
+
+```bash
+rm -rf node_modules package-lock.json
+```
+
+## 4. Встанови залежності
 
 ```bash
 npm install
 ```
 
-## 4. Запусти сервер
+Тепер має встановитися тільки `express`, без компіляції SQLite.
+
+## 5. Запусти сервер
 
 ```bash
 npm start
@@ -41,12 +61,12 @@ http://localhost:3000
 База даних створиться автоматично:
 
 ```text
-data/study.db
+data/study.json
 ```
 
-## 5. Запуск через ngrok
+## 6. Запуск через ngrok
 
-В іншому терміналі запусти:
+В іншому терміналі Termux запусти:
 
 ```bash
 ngrok http 3000
@@ -67,7 +87,7 @@ https://example-name.ngrok-free.app
 - додавання тем до вивчення;
 - статуси тем: план, в роботі, готово;
 - мінітести;
-- SQLite база даних;
+- JSON база даних;
 - швидкі переходи до підручників і roadmap.
 
 ## Корисні команди
@@ -88,7 +108,7 @@ npm start
 Якщо треба очистити базу:
 
 ```bash
-rm -rf data/study.db
+rm -rf data/study.json
 npm start
 ```
 
