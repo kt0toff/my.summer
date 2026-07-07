@@ -42,7 +42,6 @@ textarea {
   font: inherit;
 }
 
-/* Termux / Android mobile input fix */
 input,
 select,
 textarea {
@@ -109,20 +108,31 @@ textarea:focus {
   margin-bottom: 32px;
 }
 
-.brand-icon {
+.brand-icon,
+.subject-icon {
   display: grid;
   place-items: center;
-  width: 54px;
-  height: 54px;
   border-radius: 20px;
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
   box-shadow: 0 16px 44px rgba(124, 58, 237, 0.45);
+}
+
+.brand-icon {
+  width: 54px;
+  height: 54px;
   font-size: 26px;
+}
+
+.subject-icon {
+  width: 48px;
+  height: 48px;
+  font-size: 24px;
 }
 
 .brand h1,
 .hero h2,
-.card h3 {
+.card h3,
+.subject-card h4 {
   margin: 0;
 }
 
@@ -254,6 +264,10 @@ textarea:focus {
   margin-top: 20px;
 }
 
+.subject-overview-card {
+  margin-bottom: 20px;
+}
+
 .card-header {
   display: flex;
   align-items: center;
@@ -289,7 +303,8 @@ textarea:focus {
 }
 
 .progress-track,
-.mini-track {
+.mini-track,
+.subject-big-track {
   overflow: hidden;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.10);
@@ -298,13 +313,66 @@ textarea:focus {
 
 .progress-track { height: 18px; }
 .mini-track { height: 8px; }
+.subject-big-track { height: 13px; margin-top: 14px; }
+.main-progress { margin-bottom: 20px; }
 
 .progress-fill,
-.mini-fill {
+.mini-fill,
+.subject-big-fill {
   height: 100%;
   border-radius: inherit;
   background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
   transition: width 0.45s ease;
+}
+
+.subject-cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.subject-cards.compact {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.subject-card {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.11), rgba(255,255,255,0.045));
+}
+
+.subject-card-top {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.subject-card-top p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.subject-card-top strong {
+  font-size: 22px;
+}
+
+.subject-mini-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 12px;
+}
+
+.subject-mini-stats span {
+  padding: 6px 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
 }
 
 .subject-progress {
@@ -463,6 +531,12 @@ label {
   border-radius: 18px;
 }
 
+@media (max-width: 1100px) {
+  .subject-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 920px) {
   .app-shell {
     display: block;
@@ -500,7 +574,9 @@ label {
 
   .grid.two,
   .answer-form,
-  .subject-row {
+  .subject-row,
+  .subject-cards,
+  .subject-cards.compact {
     grid-template-columns: 1fr;
   }
 
