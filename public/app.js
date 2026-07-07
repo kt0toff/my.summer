@@ -280,6 +280,38 @@ function setupTopicForm() {
   });
 }
 
+function setupDefaultTopicImport() {
+  const button = qs('#importDefaultTopicsBtn');
+  const resultBox = qs('#importResult');
+  if (!button || !resultBox) return;
+
+  button.addEventListener('click', async () => {
+    try {
+      button.disabled = true;
+      button.textContent = 'Імпортую...';
+      resultBox.className = 'import-result show';
+      resultBox.textContent = 'Завантажую теми з підручників...';
+
+      const topicsResponse = await fetch('/default-topics.json');
+      if (!topicsResponse.ok) throw new Error('Не вдалося завантажити default-topics.json');
+      const topics = await topicsResponse.json();
+
+      const result = await api('/api/topics/bulk', {
+        method: 'POST',
+        body: JSON.stringify({ topics })
+      });
+
+      resultBox.textContent = `Готово: додано ${result.added}, пропущено дублікатів ${result.skipped}.`;
+      await loadData();
+    } catch (error) {
+      resultBox.textContent = `Помилка: ${error.message}`;
+    } finally {
+      button.disabled = false;
+      button.textContent = 'Імпортувати теми';
+    }
+  });
+}
+
 function setupTests() {
   qs('#newQuestionBtn').addEventListener('click', loadQuestion);
 
@@ -335,6 +367,7 @@ async function main() {
   setTodayLabel();
   setupNavigation();
   setupTopicForm();
+  setupDefaultTopicImport();
   setupTests();
   await loadData();
 }
