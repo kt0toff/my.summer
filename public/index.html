@@ -49,17 +49,27 @@
       </section>
 
       <section id="dashboard" class="view active">
+        <article class="card subject-overview-card">
+          <div class="card-header">
+            <div>
+              <p class="eyebrow">Предмети</p>
+              <h3>Прогрес по кожному предмету</h3>
+            </div>
+            <span id="doneCount" class="pill">0 / 0</span>
+          </div>
+          <div class="progress-track main-progress">
+            <div id="progressFill" class="progress-fill"></div>
+          </div>
+          <div id="subjectCards" class="subject-cards"></div>
+        </article>
+
         <div class="grid two">
           <article class="card progress-card">
             <div class="card-header">
               <div>
-                <p class="eyebrow">Прогрес</p>
-                <h3>Виконано тем</h3>
+                <p class="eyebrow">Коротко</p>
+                <h3>Список прогресу</h3>
               </div>
-              <span id="doneCount" class="pill">0 / 0</span>
-            </div>
-            <div class="progress-track">
-              <div id="progressFill" class="progress-fill"></div>
             </div>
             <div id="subjectProgress" class="subject-progress"></div>
           </article>
@@ -92,6 +102,16 @@
       </section>
 
       <section id="topics" class="view">
+        <article class="card mobile-subject-progress">
+          <div class="card-header">
+            <div>
+              <p class="eyebrow">Предмети</p>
+              <h3>Прогрес</h3>
+            </div>
+          </div>
+          <div id="topicSubjectCards" class="subject-cards compact"></div>
+        </article>
+
         <div class="grid two">
           <article class="card">
             <div class="card-header">
