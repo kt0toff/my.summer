@@ -1,20 +1,25 @@
 :root {
   --bg: #0b1020;
   --panel: rgba(255, 255, 255, 0.08);
-  --panel-strong: rgba(255, 255, 255, 0.13);
+  --panel-strong: rgba(255, 255, 255, 0.14);
   --text: #eef2ff;
   --muted: #aab3d6;
-  --line: rgba(255, 255, 255, 0.12);
+  --line: rgba(255, 255, 255, 0.13);
   --accent: #7c3aed;
   --accent-2: #06b6d4;
   --accent-3: #22c55e;
   --danger: #fb7185;
-  --warning: #f59e0b;
   --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
 }
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  min-height: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -28,15 +33,57 @@ body {
     var(--bg);
 }
 
-a {
-  color: inherit;
-}
+a { color: inherit; }
 
 button,
 input,
 select,
 textarea {
   font: inherit;
+}
+
+/* Termux / Android mobile input fix */
+input,
+select,
+textarea {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 14px 15px;
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+  caret-color: #ffffff;
+  background: rgba(2, 6, 23, 0.72);
+  outline: none;
+  pointer-events: auto;
+  user-select: text;
+  -webkit-user-select: text;
+  appearance: auto;
+  -webkit-appearance: auto;
+  touch-action: manipulation;
+  font-size: 16px;
+}
+
+textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(238, 242, 255, 0.48);
+  -webkit-text-fill-color: rgba(238, 242, 255, 0.48);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--accent-2);
+  box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.18);
+  background: rgba(2, 6, 23, 0.9);
 }
 
 .app-shell {
@@ -153,10 +200,10 @@ textarea {
   letter-spacing: -0.05em;
 }
 
-.hero p {
-  max-width: 720px;
+.hero p,
+.muted {
   color: var(--muted);
-  font-size: 17px;
+  line-height: 1.7;
 }
 
 .hero-badge {
@@ -180,13 +227,8 @@ textarea {
   font-size: 44px;
 }
 
-.view {
-  display: none;
-}
-
-.view.active {
-  display: block;
-}
+.view { display: none; }
+.view.active { display: block; }
 
 .grid {
   display: grid;
@@ -198,6 +240,7 @@ textarea {
 }
 
 .card {
+  position: relative;
   padding: 24px;
   border: 1px solid var(--line);
   border-radius: 28px;
@@ -219,26 +262,45 @@ textarea {
   margin-bottom: 18px;
 }
 
-.pill {
-  padding: 8px 12px;
+.pill,
+.tag {
+  padding: 7px 10px;
   border-radius: 999px;
-  background: rgba(34, 197, 94, 0.18);
-  color: #bbf7d0;
-  border: 1px solid rgba(34, 197, 94, 0.25);
-  font-size: 13px;
+  background: rgba(255, 255, 255, 0.09);
+  color: var(--muted);
+  font-size: 12px;
   font-weight: 700;
 }
 
-.progress-track {
-  height: 18px;
+.pill,
+.tag.done {
+  background: rgba(34, 197, 94, 0.18);
+  color: #bbf7d0;
+}
+
+.tag.high {
+  background: rgba(245, 158, 11, 0.18);
+  color: #fde68a;
+}
+
+.tag.in_progress {
+  background: rgba(6, 182, 212, 0.18);
+  color: #a5f3fc;
+}
+
+.progress-track,
+.mini-track {
   overflow: hidden;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.10);
   border: 1px solid var(--line);
 }
 
-.progress-fill {
-  width: 0%;
+.progress-track { height: 18px; }
+.mini-track { height: 8px; }
+
+.progress-fill,
+.mini-fill {
   height: 100%;
   border-radius: inherit;
   background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
@@ -258,18 +320,6 @@ textarea {
   align-items: center;
   color: var(--muted);
   font-size: 14px;
-}
-
-.mini-track {
-  height: 8px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.10);
-}
-
-.mini-fill {
-  height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
 }
 
 .focus-list {
@@ -300,37 +350,18 @@ textarea {
   margin: 8px 0;
 }
 
-.topic-meta {
+.topic-meta,
+.topic-actions,
+.test-controls {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 12px;
 }
 
-.tag {
-  padding: 6px 9px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.09);
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.tag.high {
-  background: rgba(245, 158, 11, 0.18);
-  color: #fde68a;
-}
-
-.tag.done {
-  background: rgba(34, 197, 94, 0.18);
-  color: #bbf7d0;
-}
-
-.tag.in_progress {
-  background: rgba(6, 182, 212, 0.18);
-  color: #a5f3fc;
-}
-
 .form {
+  position: relative;
+  z-index: 3;
   display: grid;
   gap: 14px;
 }
@@ -342,25 +373,9 @@ label {
   font-size: 14px;
 }
 
-input,
-select,
-textarea {
-  width: 100%;
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 13px 14px;
-  color: var(--text);
-  background: rgba(2, 6, 23, 0.38);
-  outline: none;
-}
-
-textarea {
-  min-height: 90px;
-  resize: vertical;
-}
-
 .primary,
-.secondary {
+.secondary,
+.topic-actions button {
   padding: 13px 16px;
   border-radius: 16px;
   font-weight: 800;
@@ -371,31 +386,17 @@ textarea {
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
 }
 
-.secondary {
+.secondary,
+.topic-actions button {
   background: rgba(255, 255, 255, 0.10);
   border: 1px solid var(--line);
 }
 
-.primary:hover,
-.secondary:hover {
-  transform: translateY(-1px);
-  opacity: 0.95;
-}
-
-.topic-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 14px;
-}
-
 .topic-actions button {
-  padding: 8px 10px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
   color: var(--text);
-  background: rgba(255, 255, 255, 0.08);
   cursor: pointer;
+  padding: 8px 10px;
+  border-radius: 12px;
 }
 
 .topic-actions button.danger {
@@ -403,10 +404,11 @@ textarea {
   border-color: rgba(251, 113, 133, 0.30);
 }
 
-.test-controls {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 14px;
+.primary:hover,
+.secondary:hover,
+.topic-actions button:hover {
+  transform: translateY(-1px);
+  opacity: 0.95;
 }
 
 .question-box {
@@ -415,10 +417,6 @@ textarea {
   border: 1px solid var(--line);
   border-radius: 22px;
   background: rgba(2, 6, 23, 0.28);
-}
-
-.question-box h4 {
-  margin: 0 0 10px;
 }
 
 .answer-form {
@@ -433,15 +431,11 @@ textarea {
   display: none;
 }
 
-.answer-result.show {
-  display: block;
-}
-
+.answer-result.show { display: block; }
 .answer-result.correct {
   background: rgba(34, 197, 94, 0.16);
   border: 1px solid rgba(34, 197, 94, 0.25);
 }
-
 .answer-result.wrong {
   background: rgba(251, 113, 133, 0.16);
   border: 1px solid rgba(251, 113, 133, 0.25);
@@ -462,11 +456,6 @@ textarea {
   font-weight: 800;
 }
 
-.muted {
-  color: var(--muted);
-  line-height: 1.7;
-}
-
 .empty {
   color: var(--muted);
   padding: 18px;
@@ -476,22 +465,51 @@ textarea {
 
 @media (max-width: 920px) {
   .app-shell {
-    grid-template-columns: 1fr;
+    display: block;
   }
 
   .sidebar {
-    position: static;
+    position: relative;
     height: auto;
+    padding: 18px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .brand {
+    margin-bottom: 18px;
+  }
+
+  .nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sidebar-card {
+    display: none;
+  }
+
+  .main {
+    padding: 16px;
+  }
+
+  .hero {
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 26px;
   }
 
   .grid.two,
-  .hero {
-    grid-template-columns: 1fr;
-    flex-direction: column;
-  }
-
   .answer-form,
   .subject-row {
     grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  .test-controls {
+    display: grid;
   }
 }
