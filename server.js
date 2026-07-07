@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 const dataDir = path.join(__dirname, 'data');
 const dbPath = path.join(dataDir, 'study.json');
 
-app.use(express.json());
+app.use(express.json({ limit: '2mb' }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 function now() {
@@ -47,19 +47,13 @@ function initialData() {
 }
 
 function ensureDatabase() {
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
-  }
-
-  if (!fs.existsSync(dbPath)) {
-    fs.writeFileSync(dbPath, JSON.stringify(initialData(), null, 2), 'utf-8');
-  }
+  if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
+  if (!fs.existsSync(dbPath)) fs.writeFileSync(dbPath, JSON.stringify(initialData(), null, 2), 'utf-8');
 }
 
 function readDb() {
   ensureDatabase();
-  const raw = fs.readFileSync(dbPath, 'utf-8');
-  return JSON.parse(raw);
+  return JSON.parse(fs.readFileSync(dbPath, 'utf-8'));
 }
 
 function writeDb(data) {
@@ -75,6 +69,10 @@ function normalize(value) {
   return String(value || '').trim().toLowerCase().replace(/\s+/g, ' ');
 }
 
+function topicKey(topic) {
+  return `${topic.subject}|${topic.grade}|${topic.title}`.toLowerCase();
+}
+
 app.get('/api/health', (req, res) => {
   res.json({ ok: true, app: 'my-summer-study-app', storage: 'json' });
 });
@@ -82,8 +80,7 @@ app.get('/api/health', (req, res) => {
 app.get('/api/topics', (req, res) => {
   try {
     const db = readDb();
-    const rows = [...db.topics].sort((a, b) => b.id - a.id);
-    res.json(rows);
+    res.json([...db.topics].sort((a, b) => b.id - a.id));
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -92,9 +89,7 @@ app.get('/api/topics', (req, res) => {
 app.post('/api/topics', (req, res) => {
   try {
     const { subject, grade, title, description = '', priority = 'normal' } = req.body;
-    if (!subject || !grade || !title) {
-      return res.status(400).json({ error: 'subject, grade and title are required' });
-    }
+    if (!subject || !grade || !title) return res.status(400).json({ error: 'subject, grade and title are required' });
 
     const db = readDb();
     const topic = {
@@ -117,12 +112,57 @@ app.post('/api/topics', (req, res) => {
   }
 });
 
+app.post('/api/topics/bulk', (req, res) => {
+  try {
+    const incoming = Array.isArray(req.body.topics) ? req.body.topics : [];
+    if (incoming.length === 0) return res.status(400).json({ error: 'topics array is required' });
+
+    const db = readDb();
+    const existing = new Set(db.topics.map(topicKey));
+    const added = [];
+    let skipped = 0;
+
+    for (const item of incoming) {
+      if (!item.subject || !item.grade || !item.title) {
+        skipped += 1;
+        continue;
+      }
+
+      const key = topicKey(item);
+      if (existing.has(key)) {
+        skipped += 1;
+        continue;
+      }
+
+      const topic = {
+        id: db.nextTopicId++,
+        subject: item.subject,
+        grade: item.grade,
+        title: item.title,
+        description: item.description || '',
+        status: item.status || 'todo',
+        priority: item.priority || 'normal',
+        created_at: now(),
+        updated_at: now()
+      };
+
+      db.topics.push(topic);
+      existing.add(key);
+      added.push(topic);
+    }
+
+    writeDb(db);
+    res.status(201).json({ added: added.length, skipped, topics: added });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.patch('/api/topics/:id', (req, res) => {
   try {
     const db = readDb();
     const id = Number(req.params.id);
     const topic = db.topics.find((item) => item.id === id);
-
     if (!topic) return res.status(404).json({ error: 'Topic not found' });
 
     const allowed = ['subject', 'grade', 'title', 'description', 'status', 'priority'];
@@ -144,10 +184,7 @@ app.delete('/api/topics/:id', (req, res) => {
     const id = Number(req.params.id);
     const before = db.topics.length;
     db.topics = db.topics.filter((item) => item.id !== id);
-
-    if (db.topics.length === before) {
-      return res.status(404).json({ error: 'Topic not found' });
-    }
+    if (db.topics.length === before) return res.status(404).json({ error: 'Topic not found' });
 
     writeDb(db);
     res.json({ ok: true });
@@ -166,9 +203,7 @@ app.get('/api/stats', (req, res) => {
 
     const bySubjectMap = new Map();
     for (const topic of db.topics) {
-      if (!bySubjectMap.has(topic.subject)) {
-        bySubjectMap.set(topic.subject, { subject: topic.subject, total: 0, done: 0 });
-      }
+      if (!bySubjectMap.has(topic.subject)) bySubjectMap.set(topic.subject, { subject: topic.subject, total: 0, done: 0 });
       const row = bySubjectMap.get(topic.subject);
       row.total += 1;
       if (topic.status === 'done') row.done += 1;
@@ -186,7 +221,6 @@ app.get('/api/tests/random', (req, res) => {
     const db = readDb();
     const subject = req.query.subject;
     const pool = subject ? db.tests.filter((test) => test.subject === subject) : db.tests;
-
     if (pool.length === 0) return res.status(404).json({ error: 'No tests found' });
 
     const test = pool[Math.floor(Math.random() * pool.length)];
@@ -201,7 +235,6 @@ app.post('/api/tests/:id/check', (req, res) => {
     const db = readDb();
     const id = Number(req.params.id);
     const test = db.tests.find((item) => item.id === id);
-
     if (!test) return res.status(404).json({ error: 'Test not found' });
 
     const userAnswer = req.body.answer || '';
@@ -216,11 +249,7 @@ app.post('/api/tests/:id/check', (req, res) => {
     });
     writeDb(db);
 
-    res.json({
-      correct: isCorrect,
-      correctAnswer: test.answer,
-      explanation: test.explanation
-    });
+    res.json({ correct: isCorrect, correctAnswer: test.answer, explanation: test.explanation });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
