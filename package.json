@@ -1,7 +1,7 @@
 {
   "name": "my-summer-study-app",
-  "version": "1.0.0",
-  "description": "Personal summer study tracker with tests, progress bar and SQLite database.",
+  "version": "1.1.0",
+  "description": "Personal summer study tracker with tests, progress bar and a JSON database that works well in Termux.",
   "main": "server.js",
   "type": "commonjs",
   "scripts": {
@@ -9,8 +9,7 @@
     "dev": "node server.js"
   },
   "dependencies": {
-    "express": "^4.19.2",
-    "sqlite3": "^5.1.7"
+    "express": "^4.19.2"
   },
   "engines": {
     "node": ">=18"
